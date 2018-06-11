@@ -14,7 +14,7 @@ href=/admin/delete/
 
 As a result, our URL now has the id appended
 
-## Method to process /delete/: \_id
+## Method to process /delete/: id
 
 Using a colon indicates it's variable (like php/mysql).
 The way to access this is via req.params.
