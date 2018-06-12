@@ -48,10 +48,6 @@ router.get('/delete/:_id', (req, res, next) => {
 <td><a href=/admin/edit/<%= games[i]._id %>">Edit</a></td>
 ```
 
-Make sure form has no action so it posts to itself
-```html
- <form method="POST">
-```
 
 ## GET handler to process /edit/: id
 
@@ -84,6 +80,12 @@ Now form is same as addform but populated
 <input ... value="<%= game.publisher %>">
 <input ... value="<%= game.imageUrl %>">
 ```
+
+Make sure form has no action so it posts to itself
+```html
+ <form method="POST">
+```
+
 
 ## POST handler to process /edit/: id
 
