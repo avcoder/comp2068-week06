@@ -48,6 +48,11 @@ router.get('/delete/:_id', (req, res, next) => {
 <td><a href=/admin/edit/<%= games[i]._id %>">Edit</a></td>
 ```
 
+Make sure form has no action so it posts to itself
+```html
+ <form method="POST">
+```
+
 ## GET handler to process /edit/: id
 
 ```js
