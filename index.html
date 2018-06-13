@@ -205,10 +205,10 @@
                   <code class="text-intro">3. npm i</code>
                 </li>
                 <li>
-                  <code class="text-intro">4. npm start</code>
+                  <code class="text-intro">4. npm start / nodemon</code>
                 </li>
                 <li>
-                  <code class="text-intro">5. (nodemon)?</code>
+                  <code class="text-intro">5. Edit .gitignore from .env to *.env</code>
                 </li>
               </ul>
             </div>
@@ -258,571 +258,11 @@
         <!-- .end .wrap -->
       </section>
 
-      <section class="">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-90 aligncenter">
-          <div class="bg-white shadow">
-            <img src="./static/images/whycloud.PNG" alt="Why the cloud? Speed, scale, economics" style="height: 70vh">
-          </div>
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-90 aligncenter">
-          <div class="bg-white shadow">
-            <img src="./static/images/olympics.PNG" alt="How many servers would you need to host Olympics website?" style="height: 70vh">
-          </div>
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-90 aligncenter">
-          <div class="bg-white shadow">
-            <img src="./static/images/spikes.PNG" alt="How do we manage apps that have demand spikes?" style="height: 70vh">
-          </div>
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-90 aligncenter">
-          <div class="bg-white shadow">
-            <img src="./static/images/cloudcompanies.jpg" alt="Cloud companies such as Amazon, MS, Heroku, Google" style="height: 70vh">
-          </div>
-          <p>
-            <a href="https://medium.com/@GoRadialspark/heroku-alternatives-aws-azure-and-google-cloud-platform-870ae316527e">Heroku alternatives</a>
-          </p>
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="bg-purple">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-50 aligncenter">
-          <h2>
-            <strong>3 problems with relational DBs</strong>
-          </h2>
-          <br />
-          <div class="bg-white shadow">
-            <ul class="flexblock specs">
-              <li>
-                <p class="text-intro">Scalability Problem with Relational databases: constantly having capacity problems as they got more and more
-                  data
-                </p>
-              </li>
-              <li>
-                <p class="text-intro">Serialization/Deserialization: Translating data from database into objects that our application code can
-                  use requires significant design/coding work (vs. JSON)
-                </p>
-              </li>
-              <li>
-                <p class="text-intro">Flexibility: The relational model is inflexible especially when adding a new field or data rules change
-                </p>
-              </li>
-            </ul>
-          </div>
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-50 aligncenter">
-          <h2>
-            <strong>noSQL Solution</strong>
-          </h2>
-          <br />
-          <div class="bg-white shadow">
-            <ul class="flexblock specs">
-              <li>
-                <p class="text-intro">Vocabulary change: Relational databases store data in tables, whereas on noSQL databases like MongoDB, it
-                  stores data in
-                  <b>collections</b>.
-                </p>
-              </li>
-              <li>
-                <p class="text-intro">Vocabulary change: The noSQL equivalent of a relational database record is called a
-                  <b>document</b> which are key-value pairs of data
-                </p>
-              </li>
-              <li>
-                <p class="text-intro">In a collection, not every document has to look the same. Unlike traditional db where all records have to
-                  follow same structure
-                </p>
-              </li>
-            </ul>
-          </div>
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
 
       <section class="bg-apple">
         <!--.wrap = container (width: 90%) -->
         <div class="wrap size-90 aligncenter">
-
-          <div class="grid vertical-align">
-            <div class="column">
-              <pre><code><h5>
-{
-  "_id" : ObjectId("54c955492b7c8eb21818bd09"),
-  "address" : {
-    "street" : "2 Avenue",
-    "zipcode" : "10075",
-    "building" : "1480",
-    "coord" : [ -73.9557413, 40.7720266 ],
-  },
-  "borough" : "Manhattan",
-  "cuisine" : "Italian",
-  "grades" : [{
-      "date" : ISODate("2014-10-01T00:00:00Z"),
-      "grade" : "A",
-      "score" : 11
-    },
-    { "date" : ISODate("2014-01-16T00:00:00Z"),
-      "grade" : "B",
-      "score" : 17
-    }],
-  "name" : "Vella",
-  "restaurant_id" : "41704620“
-}
-</h5></code></pre>
-
-            </div>
-            <div class="column">
-              <ul class="flexblock specs">
-                <li>
-                  <h2>JSON</h2>
-                  <p class="text-intro">Here is a restaurant object where the data is stored as key/value pairs</p>
-                </li>
-                <li>
-                  <h2>_id</h2>
-                  <p class="text-intro">Notice there is a unique identifier column called `_id` with a ObjectId data type. MongoDB automatically
-                    creates this for us so we never have to setup any kind of unique keyfield</p>
-                </li>
-                <li>
-                  <h2>huMONGOus</h2>
-                  <p class="text-intro">Created in 2007 from the word "humongous", it's still the world's most popular noSQL db</p>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="bg-green">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-50 aligncenter">
-          <h2>
-            <strong>Schema-less</strong>
-          </h2>
-          <br />
-          <div class="bg-white shadow">
-            <ul class="flexblock specs">
-              <li>
-                <p class="text-intro">Schema-less: Collections do not need to be defined before they can be used, 2 documents in the same collection
-                  can have a different number of fields is inserted into it
-                </p>
-              </li>
-              <li>
-                <p class="text-intro">A collection can be automatically created when the first document</p>
-              </li>
-              <li>
-                <p class="text-intro">Each document, can have a different format that evolves over time without requiring to modify document structure
-                  first
-                </p>
-              </li>
-            </ul>
-          </div>
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="bg-primary">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-50 aligncenter">
-          <h2>
-            <strong>master-child relationship</strong>
-          </h2>
-          <br />
-          <div class="bg-white shadow">
-            <ul class="flexblock specs">
-              <li>
-                <p class="text-intro">Data relations such as master-child data can now be nested, eliminating need for table relationships, foreign
-                  keys and joins
-                </p>
-              </li>
-              <li>
-                <p class="text-intro">Results in high performance and scalability
-                </p>
-              </li>
-              <li>
-                <p class="text-intro">Suited to cloud hosting solutions which can automatically scale on demand</p>
-              </li>
-            </ul>
-          </div>
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="bg-apple">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-90 aligncenter">
-
-          <div class="grid vertical-align">
-            <div class="column">
-              <pre><code><h5>
-  {
-    "_id" : ObjectId("54c955492b7c8eb21818bd09"),
-    "address" : {
-      "street" : "2 Avenue",
-      "zipcode" : "10075",
-      "building" : "1480",
-      "coord" : [ -73.9557413, 40.7720266 ],
-    },
-    "borough" : "Manhattan",
-    "cuisine" : "Italian",
-    "grades" : [{
-        "date" : ISODate("2014-10-01T00:00:00Z"),
-        "grade" : "A",
-        "score" : 11
-      },
-      { "date" : ISODate("2014-01-16T00:00:00Z"),
-        "grade" : "B",
-        "score" : 17
-      }],
-    "name" : "Vella",
-    "restaurant_id" : "41704620“
-  }
-  </h5></code></pre>
-
-            </div>
-            <div class="column">
-              <ul class="flexblock specs">
-                <li>
-                  <h2>BSON</h2>
-                  <p class="text-intro">To make it faster, instead of storing in plain text format, MongoDB will store it in Binary, in a format
-                    called BSON (Binary JSON)</p>
-                </li>
-                <li>
-                  <h2>Nested</h2>
-                  <p class="text-intro">Here we have 2 grades nested in the master. Compare that to relational db. No joins needed means faster
-                    performance
-                  </p>
-                </li>
-                <li>
-                  <h2>Tradeoff</h2>
-                  <p class="text-intro">If there are more complex, nested relationships, that becomes hard to manage. So typically don't want to
-                    do this if there are lots of tables and relationships</p>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-50 aligncenter">
-          <h2>
-            How do I get MongoDB?
-          </h2>
-          <ul class="flexblock reasons">
-            <li>
-              <p class="text-intro">Install local:
-                <a href="https://www.mongodb.com/download-center#community">https://www.mongodb.com/download-center#community</a>
-              </p>
-            </li>
-            <li>
-              <p class="text-intro">Run in the cloud for free at
-                <a href="https://www.mlab.com">https://www.mlab.com</a>
-              </p>
-            </li>
-            <li>
-              <p class="text-intro">Enable as an Azure add-on</p>
-            </li>
-          </ul>
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-90 aligncenter">
-          <div class="grid vertical-align">
-            <div class="column">
-              <h2>
-                Local Installation
-              </h2>
-              <ul class="flexblock specs">
-                <li>
-                  <p class="text-intro">Also comes with Compass, a GUI interface similar to mySQLworkbench
-                  </p>
-                </li>
-                <li>
-                  <p class="text-intro">MongoDB is self contained and doesn't have any depedencies
-                  </p>
-                </li>
-                <li>
-                  <p class="text-intro">it requires a `data` directory to store all data. The default is `c:\users\username\node\data\db`</p>
-                </li>
-              </ul>
-            </div>
-            <div class="column">
-              <img src="./static/images/insertone.PNG" alt="mongodb insertone">
-              <br>
-              <br>
-              <img src="./static/images/find.PNG" alt="mongodb find">
-              <p>
-                <a href="https://docs.mongodb.com/manual/crud/">https://docs.mongodb.com/manual/crud/</a>
-              </p>
-            </div>
-          </div>
-
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="bg-apple">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-90 aligncenter">
-          <div class="grid vertical-align">
-            <div class="column">
-              <h2>
-                mlab.com
-              </h2>
-              <ul class="flexblock specs">
-                <li>
-                  <p class="text-intro">Mongo Deployment: Create new > Plan-Type: Sandbox > Continue > US East > Continue
-                  </p>
-                </li>
-                <li>
-                  <p class="text-intro">Name your db 'retro' > Submit Order to finish creating your database
-                  </p>
-                </li>
-                <li>
-                  <p class="text-intro">Click your MongoDB Deployment > Add Collection > Name your collection 'games' > Create</p>
-                </li>
-              </ul>
-            </div>
-            <div class="column">
-              <img src="./static/images/sandbox.PNG" alt="mlab sandbox" style="width: 50%">
-              <br>
-              <br>
-              <img src="./static/images/dbcreated.PNG" alt="mlab created db" style="width: 50%">
-              <br>
-              <br>
-              <img src="./static/images/adddb.PNG" alt="mlab add collection" style="width: 50%">
-            </div>
-          </div>
-
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-90 aligncenter">
-          <div class="grid vertical-align">
-            <div class="column">
-              <h2>
-                Retro PC Games Site
-              </h2>
-              <ul class="flexblock specs">
-                <li>
-                  <p class="text-intro">
-                    <a href="https://archive.org/details/softwarelibrary_msdos_games">https://archive.org/details/softwarelibrary_msdos_games</a>
-                  </p>
-                </li>
-                <li>
-                  <p class="text-intro">Right click on any game image > Select Copy image address
-                  </p>
-
-                </li>
-                <li>
-                  <p class="text-intro">https://archive.org/services/img/msdos_Oregon_Trail_The_1990</p>
-                </li>
-              </ul>
-            </div>
-            <div class="column">
-              <img src="./static/images/dosgames.PNG" alt="MS-DOS games">
-            </div>
-          </div>
-
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="bg-apple">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-90 aligncenter">
-          <div class="grid vertical-align">
-            <div class="column">
-              <h2>
-                Add games on mlab
-              </h2>
-              <ul class="flexblock specs">
-                <li>
-                  <p class="text-intro">Click your Collection > Add document
-                  </p>
-                </li>
-                <li>
-                  <p class="text-intro">Add a game using title, publisher, year, imageUrl
-                  </p>
-                </li>
-                <li>
-                  <p class="text-intro">Remember: Use
-                    <a href="https://archive.org/details/softwarelibrary_msdos_games">archive site</a> to add games</p>
-                </li>
-              </ul>
-              <p>Demo on codepen how to embed via iframe. </p>
-              <p> Notice in the
-                <b>iframe tag</b>, the src begins the same for all games and the last part of the path is the same as imageUrl
-                path
-              </p>
-            </div>
-            <div class="column">
-              <img src="./static/images/createdoc.PNG" alt="mlab create document" style="width: 50%">
-              <br>
-              <br>
-              <img src="./static/images/share.PNG" alt="" style="width: 50%">
-              <br>
-              <br>
-              <img src="./static/images/embed.PNG" alt="" style="width: 80%">
-            </div>
-          </div>
-
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="bg-purple">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-50 aligncenter">
-          <h2>
-            How does our node app talk to mongodb?
-          </h2>
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-50 aligncenter">
-          <h1>
-            Mongoose
-          </h1>
-
-          <ul class="flexblock specs">
-            <li>
-              <p class="text-intro">it's an object-document mapper (ODM) that allows a node application to interface with a MongoDB database
-              </p>
-            </li>
-            <li>
-              <p class="text-intro">is the node equivalent of Entity Framework (ORM) when connecting .NET and SQL SVR. Install via npm.
-              </p>
-            </li>
-            <li>
-              <p class="text-intro">provides a straight-forward, schema-based solution to model your application data. It includes built-in type
-                casting, validation, query building, business logic hooks</p>
-            </li>
-          </ul>
-
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="bg-primary">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-50 aligncenter">
-          <h2>
-            Purpose of Mongoose Schema/Model
-          </h2>
-
-          <ul class="flexblock specs">
-            <li>
-              <p class="text-intro">To map a specific collection in a MongoDB for a Node application
-              </p>
-            </li>
-            <li>
-              <p class="text-intro">To set out validation rules for a MongoDB collection
-              </p>
-            </li>
-            <li>
-              <p class="text-intro">To allow a model class to use the built-in mongoose CRUD methods</p>
-            </li>
-
-          </ul>
-          <br>
-          <br>
-          <p class="text-intro">we create the models ourselves; these schemas live in the web app, not the db</p>
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-      <section class="">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-90 aligncenter">
-          <div class="grid vertical-align">
-            <div class="column">
-              <h2>
-                <code>npm i mongoose</code>
-              </h2>
-              <p>
-                <a href="https://www.npmjs.com/package/mongoose">https://www.npm.im/mongoose</a>
-              </p>
-            </div>
-            <div class="column">
-              <h2>In a node application, where do we need to add a reference to mongoose?</h2>
-              <ul class="flexblock reasons">
-                <li>
-                  <p class="text-intro">In app.js</p>
-                </li>
-                <li>
-                  <p class="text-intro">In any models we create</p>
-                </li>
-                <li>
-                  <p class="text-intro">In any controllers we create</p>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-
-          <!-- .end .bg-white shadow -->
-        </div>
-        <!-- .end .wrap -->
-      </section>
-
-
-      <section class="bg-primary">
-        <!--.wrap = container (width: 90%) -->
-        <div class="wrap size-90 aligncenter">
-          <h1>Adding mongodb, mongoose and displaying data</h1>
+          <h1>Adding mongodb, mongoose and Read data</h1>
           <div class="grid vertical-align">
             <div class="column">
               <h4>mlab + mongoose</h4>
@@ -863,37 +303,38 @@
                   <code class="text-intro">9. use schema in controllers/gamesController.js</code>
                 </li>
                 <li>
-                  <code class="text-intro">10. Edit games.ejs to use games data</code>
+                  <code class="text-intro">10. Edit games.ejs to use data <br><% for (let i = 0; i < games.length; i++) { %></code>
                 </li>
               </ul>
             </div>
             <div class="column">
-              <h4>Add form</h4>
-              <ul class="flexblock specs">
-                <li>index.js
-                  <code class="text-intro">11. router.post('/add', gamesController.createGame);</code>
-                </li>
-                <li>
-                  <code class="text-intro">12. modify .ejs file to include form. Make sure name fields correspond to mlab</code>
-                </li>
-                <li>controllers/gamesController.js
-                  <code>13. exports.createGame = async (req, res) => {
-                      try {
-                        const game = new Game(req.body);
-                        await game.save();
-                        res.redirect('/');
-                      } catch (err) {
-                        console.log(err);
-                      }
-                    };</code>
-                </li>
-                <li>
-                  <code class="text-intro">14. </code>
-                </li>
-                <li>
-                  <code class="text-intro">15. </code>
-                </li>
-              </ul>
+              <h4>Example for #8</h4>
+              <pre><code>
+const mongoose = require('mongoose');
+const gameSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: 'Doh! You forgot to put in the game title',
+  },
+});
+module.exports = mongoose.model('Game', gameSchema);
+</code></pre>
+              <h4>Example for #9</h4>
+              <pre><code>
+const Game = require('../models/Game');  
+exports.getGames = (req, res) => {
+
+  Game.find((err, games) => {
+    if (err) {
+      res.render('error');
+    } else {
+      res.render('games', {
+        title: 'All Games',
+        games,
+      });
+    }
+  }); };
+</code></pre>
             </div>
           </div>
           <!-- .end .bg-white shadow -->
@@ -901,11 +342,62 @@
         <!-- .end .wrap -->
       </section>
 
-      <section class="">
+      <section class="bg-primary">
         <!--.wrap = container (width: 90%) -->
         <div class="wrap size-90 aligncenter">
-          <div class="bg-white shadow">
-            <img src="./static/images/mvc.png" alt="mvc model" style="height: 70vh">
+          <h1>Create, Delete, Edit data</h1>
+          <div class="grid vertical-align">
+            <div class="column">
+              <h4>Add Form</h4>
+              <ul class="flexblock specs">
+                <li>
+                  <code class="text-intro">1. </code>
+                </li>
+                <li>
+                  <code class="text-intro">2. </code>
+                </li>
+                <li>
+                  <code class="text-intro">3. </code>
+                </li>
+                <li>
+                  <code class="text-intro">4. </code>
+                </li>
+                <li>
+                  <code>5. </code>
+                </li>
+
+              </ul>
+            </div>
+            <div class="column">
+              <h4>Delete</h4>
+              <ul class="flexblock specs">
+                <li>
+                  <code class="text-intro">6. </code>
+                </li>
+                <li>
+                  <code class="text-intro">7. </code>
+                </li>
+                <li>
+                  <code class="text-intro">8. </code>
+                </li>
+                <li>
+                  <code class="text-intro">9. </code>
+                </li>
+                <li>
+                  <code class="text-intro">10. </code>
+                </li>
+              </ul>
+            </div>
+            <div class="column">
+              <h4>Example for #8</h4>
+              <pre><code>
+
+  </code></pre>
+              <h4>Example for #9</h4>
+              <pre><code>
+
+  </code></pre>
+            </div>
           </div>
           <!-- .end .bg-white shadow -->
         </div>
