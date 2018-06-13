@@ -236,7 +236,7 @@ As a result, our URL now has the id appended
 
 Using a colon indicates it's variable (like php/mysql).
 The way to access this is via req.params.
-req.params is one way of getting vars from url - or try req.query['id']
+req.params is one way of getting vars from url 
 req.body is one way of getting vars from form - but you need to require('body-parser')
 
 1. in views/admin.ejs
