@@ -374,32 +374,44 @@ exports.createGame = (req, res) => {
             <div class="column">
               <h4>Delete</h4>
               <ul class="flexblock specs">
-                <li>
-                  <code class="text-intro">6. </code>
+                <li>in views/admin.ejs
+                  <code>5. &lt;td>&lt;a href=/admin/delete/&lt;%= games[i]._id %>" onclick="return confirm('Sure?')">Delete&lt;/a>&lt;/td></code>
                 </li>
-                <li>
-                  <code class="text-intro">7. </code>
+                <li>in router/index.js
+                  <code>6. router.get('/admin/delete/:id', gamesController.deleteGame);</code>
                 </li>
-                <li>
-                  <code class="text-intro">8. </code>
+                <li>in controllers/gameController.js
+                  <pre><code>7.
+exports.deleteGame = (req, res) => {
+  Game.remove({ _id: req.params.id }, err => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect('/admin');
+    }
+  });                    
+                     </code>
+                  </pre>
                 </li>
-                <li>
-                  <code class="text-intro">9. </code>
-                </li>
-                <li>
-                  <code class="text-intro">10. </code>
-                </li>
+
               </ul>
             </div>
             <div class="column">
-              <h4>Example for #8</h4>
-              <pre><code>
+              <h4>Edit</h4>
+              <ul class="flexblock specs">
+                <li>
+                  <code>8. </code>
+                </li>
+                <li>
+                  <code>9. </code>
+                </li>
+                <li>
+                  <code>10.</code>
+                </li>
+                <li></li>
+                <li></li>
+              </ul>
 
-  </code></pre>
-              <h4>Example for #9</h4>
-              <pre><code>
-
-  </code></pre>
             </div>
           </div>
           <!-- .end .bg-white shadow -->

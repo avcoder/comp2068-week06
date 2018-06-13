@@ -6,6 +6,7 @@
 1.  Under 'Background processes', look for Node.js Server-side JavaScript > select it > Click button "End Task"
 
 # Display table
+Prerequesites for today's class is you need a table to display data, and an add form.  So just to review/backtrack a bit...
 
 1.  Add some table html template code to your .ejs file
 1.  Add a new column for Edit. You can make an anchor tag for now with the text 'Edit' or use an icon
@@ -241,9 +242,8 @@ req.body is one way of getting vars from form - but you need to require('body-pa
 1. in views/admin.ejs
 
   ```html
-  <a href="/admin/delete/<%= games[i]._id %>" onclick="return confirm('Are you sure you want to delete this game?')">
+  <a href="/admin/delete/<%= games[i]._id %>">
   ```
-For assignments, above is good enough, but for production you may want to reconsider [not using confirm prompts](https://alistapart.com/article/neveruseawarning)
 
 1. in routes/index.js
 
@@ -251,6 +251,7 @@ For assignments, above is good enough, but for production you may want to recons
   router.get('/admin/delete/:id', gamesController.deleteGame);
   ```
 
+1. in controllers/gameController.js
   ```js
   exports.deleteGame = (req, res) => {
     // use the Game model's remove method to delete the document with the id passed
@@ -261,28 +262,16 @@ For assignments, above is good enough, but for production you may want to recons
         res.redirect('/admin');
       }
     });
-
-    // use Game's findByIdAndRemove which unlike .remove(), returns the deleted object in callback
-    // TODO: make an undo feature using the deleted object in callback using connect-flash
-    // Game.findByIdAndRemove({ _id: req.params.id }, async (err, docs) => {
-    //   if (err) {
-    //     console.log(err);
-    //   } else {
-    //     const games = await Game.find();
-    //     res.render('admin', {
-    //       msg: `${docs.title} has been deleted`,
-    //       title: 'Admin',
-    //       isActive: 'admin',
-    //       games,
-    //     });
-    //   }
-    // });
-  };
   ```
 
-## Use js to confirm delete before delete
+1. Use confirm before delete
 
-<a ... onclick="return confirm('Are you sure you want to delete this?');">Delete</a>
+  `<a ... onclick="return confirm('Are you sure you want to delete this?');">Delete</a>`
+
+  For assignments, above confirm() is good enough, but you may want to reconsider [not using confirm prompts](https://alistapart.com/article/neveruseawarning)
+
+  For example, see my node/lesson5c/ app which has both getmdl's snackbar and materialize's toast as examples
+  We'll come back to this at the end of class if there's time.
 
 ---
 
@@ -369,4 +358,35 @@ router.post('/edit/:_id', (req, res, next) => {
 # Midterm exam
 
 - do Quizzes
-- Read only from mlab
+- 1st part, you will get 30 randomized m/c questions from a pool of 50 questions.
+- 2nd part: CRUD? Read only from mlab. Given a table screenshot and data to insert, recreate it.
+- today's class of create, delete, update won't be part of exam
+- create your own, don't clone mine otherwise 0
+
+
+# Use .findByIdAndRemove() with connect-flash for Delete function
+* concept 1 - async/await functions
+* concept 2 - object destructuring
+* concept 3 - connect-flash
+
+1. Alternatively, instead of using .remove(), you can use .findByIdAndRemove()   
+  ```js
+  exports.deleteGame = (req, res) => {
+    // use Game's findByIdAndRemove which unlike .remove(), returns the deleted object in callback
+    Game.findByIdAndRemove({ _id: req.params.id }, async (err, docs) => {
+      if (err) {
+        console.log(err);
+      } else {
+        const { title, publisher, imageUrl } = docs;
+        undoGame.title = title;
+        undoGame.publisher = publisher;
+        undoGame.imageUrl = imageUrl;
+        req.flash('success', `Successfully deleted ${docs.title}`);
+        res.redirect('/admin');
+      }
+    });
+  };
+  ```
+
+1. `npm i connect-flash express-session`  
+
