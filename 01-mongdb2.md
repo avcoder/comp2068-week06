@@ -277,83 +277,81 @@ req.body is one way of getting vars from form - but you need to require('body-pa
 
 # Edit/Update
 
-```html
-<td><a href=/admin/edit/<%= games[i]._id %>">Edit</a></td>
-```
+1. in views/admin.ejs
+  ```html
+  <td><a href=/admin/edit/<%= games[i]._id %>">Edit</a></td>
+  ```
 
-## GET handler to process /edit/: id
+1. GET handler to process /edit/: id
 
-```js
-router.get('/edit', (req, res, next) => {
-  // get _id param from url
-  const _id = req.params._id;
+  ```js
+  router.get('/edit', (req, res, next) => {
+    // get _id param from url
+    const _id = req.params._id;
 
-  // use Game model to find the selected document
-  Game.findById(_id, (err, game) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render('edit', {
-        title: 'Car Details',
-        game: game
-      });
-    }
+    // use Game model to find the selected document
+    Game.findById(_id, (err, game) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render('edit', {
+          title: 'Car Details',
+          game: game
+        });
+      }
+    });
   });
-});
-```
+  ```
 
-## Create new edit view
+1. Create new edit view
 
-Copy addform html and paste it in edit.ejs
-Now form is same as addform but populated
+  Copy addform html and paste it in edit.ejs
+  Now form is same as addform but populated
 
-```html
-<input ... value="<%= game.title %>">
-<input ... value="<%= game.publisher %>">
-<input ... value="<%= game.imageUrl %>">
-```
+  ```html
+  <input ... value="<%= game.title %>">
+  <input ... value="<%= game.publisher %>">
+  <input ... value="<%= game.imageUrl %>">
+  ```
 
-Make sure form has no action so it posts to itself
+  Make sure form has no action so it posts to itself
 
-```html
- <form method="POST">
-```
+  ```html
+  <form method="POST">
+  ```
 
-## POST handler to process /edit/: id
+1. POST handler to process /edit/: id
 
-```js
-/* POST:/ game/edit/abc123 */
-router.post('/edit/:_id', (req, res, next) => {
-  const _id = req.params._id;
+  ```js
+  /* POST:/ game/edit/abc123 */
+  router.post('/edit/:_id', (req, res, next) => {
+    const _id = req.params._id;
 
-  // this is Rich Freeman's example
-  const car = new Car({
-    _id: _id,
-    title: req.body.title,
-    publisher: req.body.publisher,
-    imageUrl: req.body.imageUrl
+    // this is Rich Freeman's example
+    const car = new Car({
+      _id: _id,
+      title: req.body.title,
+      publisher: req.body.publisher,
+      imageUrl: req.body.imageUrl
+    });
+
+    // this is Wes Bos' example
+    const game = await Game.findOneAndUpdate({ _id: req.params.id }, req.body, {
+      new: true, // return the new store instead of the old one
+      runValidators: true
+    }).exec();
+
+    // call Mongoose update method, passing the _id and new game object
+    Game.update({ _id: _id }, req.body, err => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.redirect('/games');
+      }
+    });
   });
+  ```
 
-  // this is Wes Bos' example
-  const game = await Game.findOneAndUpdate({ _id: req.params.id }, req.body, {
-    new: true, // return the new store instead of the old one
-    runValidators: true
-  }).exec();
-
-  // call Mongoose update method, passing the _id and new game object
-  Game.update({ _id: _id }, req.body, err => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.redirect('/games');
-    }
-  });
-});
-```
-
-# Using connect-flash
-
-`npm i connect-flash express-session`
 
 # Midterm exam
 
