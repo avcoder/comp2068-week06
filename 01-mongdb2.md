@@ -281,26 +281,27 @@ req.body is one way of getting vars from form - but you need to require('body-pa
   ```html
   <td><a href=/admin/edit/<%= games[i]._id %>">Edit</a></td>
   ```
-
-1. GET handler to process /edit/: id
-
+1. in routes/index.js
   ```js
-  router.get('/edit', (req, res, next) => {
-    // get _id param from url
-    const _id = req.params._id;
+  router.get('/admin/edit/:id', gamesController.editGame);
+  ```
 
+1. GET handler to process /edit/: id in controllers/gameController.js
+  ```js
+  exports.editGame = (req, res, next) => {
     // use Game model to find the selected document
-    Game.findById(_id, (err, game) => {
+    Game.findById({ _id: req.params.id }, (err, game) => {
       if (err) {
         console.log(err);
       } else {
-        res.render('edit', {
-          title: 'Car Details',
-          game: game
+        res.render('editGame', {
+          title: 'Edit',
+          game,
+          isActive: 'admin',
         });
       }
     });
-  });
+  };
   ```
 
 1. Create new edit view
@@ -320,42 +321,33 @@ req.body is one way of getting vars from form - but you need to require('body-pa
   <form method="POST">
   ```
 
-1. POST handler to process /edit/: id
+1. POST handler to process /edit/: id in routes/index.js
 
   ```js
-  /* POST:/ game/edit/abc123 */
-  router.post('/edit/:_id', (req, res, next) => {
-    const _id = req.params._id;
+  router.post('/admin/edit/:id', gamesController.updateGame);
+  ```
 
-    // this is Rich Freeman's example
-    const car = new Car({
-      _id: _id,
-      title: req.body.title,
-      publisher: req.body.publisher,
-      imageUrl: req.body.imageUrl
-    });
+  ```js
+  exports.updateGame = (req, res) => {
+    // get year from last 4 characters of imageURL
+    req.body.year = req.body.imageUrl.substr(-4);
 
-    // this is Wes Bos' example
-    const game = await Game.findOneAndUpdate({ _id: req.params.id }, req.body, {
-      new: true, // return the new store instead of the old one
-      runValidators: true
-    }).exec();
-
-    // call Mongoose update method, passing the _id and new game object
-    Game.update({ _id: _id }, req.body, err => {
+    Game.update({ _id: req.params.id }, req.body, (err) => {
       if (err) {
         console.log(err);
       } else {
-        res.redirect('/games');
+        res.redirect('/admin');
       }
     });
-  });
+  };
   ```
+
+  Try editing a document, it should update
 
 
 # Midterm exam
 
-- do Quizzes
+- do all Quizzes 1 thru 4
 - 1st part, you will get 30 randomized m/c questions from a pool of 50 questions.
 - 2nd part: CRUD? Read only from mlab. Given a table screenshot and data to insert, recreate it.
 - today's class of create, delete, update won't be part of exam

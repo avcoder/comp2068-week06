@@ -345,7 +345,7 @@ exports.getGames = (req, res) => {
       <section class="bg-primary">
         <!--.wrap = container (width: 90%) -->
         <div class="wrap size-90 aligncenter">
-          <h1>Create, Delete, Edit data</h1>
+
           <div class="grid vertical-align">
             <div class="column">
               <h4>Add Form</h4>
@@ -400,16 +400,24 @@ exports.deleteGame = (req, res) => {
               <h4>Edit</h4>
               <ul class="flexblock specs">
                 <li>
-                  <code>8. </code>
+                  <code>8. &lt;td>&lt;a href=/admin/edit/&lt;%= games[i]._id %>">Edit&lt;/a>&lt;/td></code>
                 </li>
-                <li>
-                  <code>9. </code>
+                <li>in routes/index.js
+                  <code>9. router.get('/admin/edit/:id', gC.editGame);<br>router.post('/admin/edit/:id', gC.updateGame);</code>
                 </li>
-                <li>
-                  <code>10.</code>
+                <li>in controllers/gameController.js
+                  <code>10. create editGame handler to find and display data</code>
                 </li>
-                <li></li>
-                <li></li>
+                <li>in views/editGame.ejs
+                  <code>11. &lt;input ... value="&lt;%= game.title %>"></code>
+                </li>
+                <li>in views/editGame.ejs (no action posts to itself)
+                  <code>12. &lt;form method="POST"></code>
+                </li>
+                <li>in views/editGame.ejs (no action posts to itself)
+                  <code>13. create updateGame handler to Game.update()</code>
+                </li>
+
               </ul>
 
             </div>
