@@ -101,13 +101,27 @@ const gameSchema = new mongoose.Schema({
 
 1. In routes/index.js
   ```js
-  router.post('/add', gamesController.createGame);
+  router.get('/add', gamesController.addGame);
   ```
-  If you try running your app, you will now get an error:
-  `Route.post() requires a callback function but got a [object Undefined]`.  So let's create our controller
 
 1. In controllers/gameController.js
   ```js
+  exports.addGame = (req, res) => {
+    res.render('addGame', {
+      title: 'Add Game',
+      isActive: 'add',
+    });
+  };
+  ```
+Try going to the add page now, it should appear but is not yet functional
+
+1. In routes/index.js
+```js
+router.post('/add', gamesController.createGame);
+```
+
+1. In controllers/gameController.js
+```js
   exports.createGame = (req, res) => {
     try {
       const game = new Game(req.body);
@@ -117,7 +131,7 @@ const gameSchema = new mongoose.Schema({
       console.log(err);
     }
   };
-  ```
+```
 
 1. To account for the year we're going to make our code automatically extract the year from the imageURL.  In models/Game.js
 ```js
@@ -229,6 +243,7 @@ req.body is one way of getting vars from form - but you need to require('body-pa
   ```html
   <a href="/admin/delete/<%= games[i]._id %>" onclick="return confirm('Are you sure you want to delete this game?')">
   ```
+For assignments, above is good enough, but for production you may want to reconsider [not using confirm prompts](https://alistapart.com/article/neveruseawarning)
 
 1. in routes/index.js
 

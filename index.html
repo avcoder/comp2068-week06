@@ -350,22 +350,25 @@ exports.getGames = (req, res) => {
             <div class="column">
               <h4>Add Form</h4>
               <ul class="flexblock specs">
-                <li>
-                  <code class="text-intro">1. </code>
+                <li>In views/
+                  <code class="text-intro">1. Create form in addGame.ejs</code>
                 </li>
-                <li>
-                  <code class="text-intro">2. </code>
-                </li>
-                <li>
-                  <code class="text-intro">3. </code>
-                </li>
-                <li>
-                  <code class="text-intro">4. </code>
-                </li>
-                <li>
-                  <code>5. </code>
+                <li>In routes/index.js
+                  <code>2. router.get('/add', gamesController.addGame); <br>** Remember to make exports.addGame<br>3. router.post('/add', gamesController.createGame);</code>
                 </li>
 
+                <li>in controllers/gameController.js
+                  <pre><code>4.
+exports.createGame = (req, res) => {
+  try {
+    const game = new Game(req.body);
+    game.save();
+    res.redirect('/admin');
+  } catch (err) {
+    console.log(err);
+  }
+};</code></pre>
+                </li>
               </ul>
             </div>
             <div class="column">
