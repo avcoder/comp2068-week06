@@ -1,5 +1,10 @@
 [Slide Task Mgr port 3000 in use]
+[Slide Todo]
+[Slide Express app pt1]
+[Slide mongo mongoose]
+[Slide add delete edit]
 
+[Slide prerequisites]
 # Display table
 Prerequesites for today's class is you need a table to display data, and an add form.  So just to review/backtrack a bit...
 
@@ -71,7 +76,7 @@ const gameSchema = new mongoose.Schema({
 // make the= mongoose.model('Game', gameSchema);
 ```
 
-[Slide Add]
+[Slide Add/Create]
 # Add form
 1. Create views/addGame.ejs 
 1. Insert html code for a form that takes in title, publisher, imageUrl.  
