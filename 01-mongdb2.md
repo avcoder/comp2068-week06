@@ -1,9 +1,4 @@
-# port 3000 in use - taskmanager way
-
-1.  Ctrl+Alt+Del > Task Manager > (you may need to click on More Details if you don't see any tabs)
-    ![task manager](./static/images/taskmgr.png)
-1.  Click Processes Tab
-1.  Under 'Background processes', look for Node.js Server-side JavaScript > select it > Click button "End Task"
+[Slide Task Mgr port 3000 in use]
 
 # Display table
 Prerequesites for today's class is you need a table to display data, and an add form.  So just to review/backtrack a bit...
@@ -120,6 +115,16 @@ Try going to the add page now, it should appear but is not yet functional
 ```js
 router.post('/add', gamesController.createGame);
 ```
+
+1. `npm i body-parser`
+
+1. in app.js
+  ```js
+  const bodyParser = require('body-parser');
+  // Takes the raw requests and turns them into usable properties on req.body
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+  ```
 
 1. In controllers/gameController.js
 ```js
@@ -351,31 +356,25 @@ req.body is one way of getting vars from form - but you need to require('body-pa
 - 1st part, you will get 30 randomized m/c questions from a pool of 50 questions.
 - 2nd part: CRUD? Read only from mlab. Given a table screenshot and data to insert, recreate it.
 - today's class of create, delete, update won't be part of exam
-- create your own, don't clone mine otherwise 0
 
 
 # Use .findByIdAndRemove() with connect-flash for Delete function
-* concept 1 - async/await functions
-* concept 2 - object destructuring
-* concept 3 - connect-flash
 
+1. play with getmdl's Snackbar component.  Q. What would I have to store to make the Undo function work? A. The deleted game
+1. In views/admin.ejs, remove the onclick=return confirm(...) 
 1. Alternatively, instead of using .remove(), you can use .findByIdAndRemove()   
   ```js
-  exports.deleteGame = (req, res) => {
-    // use Game's findByIdAndRemove which unlike .remove(), returns the deleted object in callback
-    Game.findByIdAndRemove({ _id: req.params.id }, async (err, docs) => {
-      if (err) {
-        console.log(err);
-      } else {
-        const { title, publisher, imageUrl } = docs;
-        undoGame.title = title;
-        undoGame.publisher = publisher;
-        undoGame.imageUrl = imageUrl;
-        req.flash('success', `Successfully deleted ${docs.title}`);
-        res.redirect('/admin');
-      }
-    });
-  };
+exports.deleteGame = (req, res) => {
+  // use Game's findByIdAndRemove which unlike .remove(), returns the deleted object in callback
+  Game.findByIdAndRemove({ _id: req.params.id }, async (err, docs) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(JSON.stringify(docs));
+      res.redirect('/admin');
+    }
+  });
+};
   ```
 
 1. `npm i connect-flash express-session`  
