@@ -71,6 +71,7 @@ const gameSchema = new mongoose.Schema({
 // make the= mongoose.model('Game', gameSchema);
 ```
 
+[Slide Add]
 # Add form
 1. Create views/addGame.ejs 
 1. Insert html code for a form that takes in title, publisher, imageUrl.  
@@ -220,7 +221,7 @@ Since we will play with the delete functionality, I thought it would be a time-s
     res.redirect('/admin');
   };
   ```
-
+[Slide Delete]
 # Delete
 
 ## Where will <a href= go?
@@ -280,6 +281,7 @@ req.body is one way of getting vars from form - but you need to require('body-pa
 
 ---
 
+[Slide Edit]
 # Edit/Update
 
 1. in views/admin.ejs
@@ -349,7 +351,7 @@ req.body is one way of getting vars from form - but you need to require('body-pa
 
   Try editing a document, it should update
 
-
+[Slide Midterm]
 # Midterm exam
 
 - do all Quizzes 1 thru 4
@@ -466,3 +468,55 @@ A. We should.  Let's try using getmdl's snackbar code to get it to just appear u
 
 Q. Notice how the snackbar shows even when I didn't delete anything prior.  How to solve that?
 A. Use <% %> js logic to test if msg exists then do code, else don't even write code
+
+1. Try encapsulatitng our snackbar code (starting from the div tag, all the way to the ending script tag) within a <% if (false) { %> and view source upon page load
+
+Q. How do we get Undo functionality to work?
+A. One way, is to store deleted object to a global variable, and if user goes to undo, the route /undo will trigger a new add/create of the global object
+
+1. In controllers/gameController.js in exports.delete(); object destructuring because I couldn't simply assign undoGame = docs;
+  ```js
+  let undoGame = {};
+
+  exports.deleteGame = (req, res) => {
+    // use Game's findByIdAndRemove which unlike .remove(), returns the deleted object in callback
+    Game.findByIdAndRemove({ _id: req.params.id }, (err, docs) => {
+      if (err) {
+        console.log(err);
+      } else {
+        delete docs._id;
+        const { title, publisher, imageUrl } = docs;
+        undoGame = { title, publisher, imageUrl };
+        req.flash('success', `Successfully deleted ${docs.title}`);
+        res.redirect('/admin');
+      }
+    });
+  };
+  ```
+
+1. in routes/index.js
+  ```js
+  router.get('/undo', gamesController.undo);
+  ```
+
+1. Back in controllers/gameController.js
+  ```js
+  exports.undo = (req, res) => {
+    try {
+      const game = new Game(undoGame);
+      game.save();
+      res.redirect('/admin');
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  ```
+
+1. in views/admin.ejs, change the handler
+  ```js
+  const handler = function (event) {
+    window.location.replace('/undo');
+  };
+  ```
+
+  # Materialize is easier
