@@ -376,6 +376,93 @@ exports.deleteGame = (req, res) => {
   });
 };
   ```
+  If you look at the output of console.log, you'll see each time we delete, we have info on the deleted game object.
+  Q. If a user clicks Undo, can we potentially recreate the deleted object with the info we have?  A. yes.
 
-1. `npm i connect-flash express-session`  
+1. `npm i connect-flash express-session`  [connect-flash](https://npm.im/connect-flash)
+1. in app.js
+  ```js
+  const session = require('express-session');
+  const flash = require('connect-flash');
 
+  // session allow us to store data on visitors from request to request
+  // this keeps users logged in and allows us to send flash messages
+  // secret : the session uses secret to hash any values that are put into the session
+  // resave : everytime user interacts with browser, if true, it refreshes their session so it doesn't time out
+  // saveUninitialized: don't open a new session as soon as someone visits our site, unless they login
+  app.use(session({
+    secret: process.env.SECRET, 
+    resave: false,
+    saveUninitialized: false
+  }));
+
+  // the flash middleware let's use use req.flash('success', 'some message'),
+  // which will then pass that message to the next page the user requests
+  app.use(flash());
+
+  // pass vars to our templates and all requests
+  app.use((req, res, next) => {
+    res.locals.flashes = req.flash();
+    next();
+  });
+
+  ```
+1. in variables.env
+  ```
+  DATABASE=...
+  SECRET=...
+  ```
+
+1. Setting flash message in exports.delete() in controllers/gameController.js
+  ```js
+  exports.deleteGame = (req, res) => {
+    Game.findByIdAndRemove({ _id: req.params.id }, async (err, docs) => {
+      if (err) {
+        console.log(err);
+      } else {
+        req.flash('success', `Successfully deleted ${docs.title}`);
+        res.redirect('/admin');
+      }
+    });
+  };
+  ```
+
+1. Getting flash message in exports.admin()
+  * FYI: can also .sort()
+  * intro to async/await (try without it)
+
+  ```js
+  exports.admin = async (req, res) => {
+    const games = await Game.find().sort({ title: 'asc' });
+
+    res.render('admin', {
+      title: 'Admin',
+      isActive: 'admin',
+      games,
+      msg: res.locals.flashes.success,
+    });
+  };
+  ```
+  in views/admin.ejs, for testing purposes, change h1 
+  ```html
+  <h1> <%= msg %> </h1>
+  ```
+
+* Try deleting a game now, you should see the title of the deleted game
+Q. Can I use that message and put it in the getmdl's snackbar message?
+A. We should.  Let's try using getmdl's snackbar code to get it to just appear upon page load.
+
+1. Copy/paste getmdl's snackbar code into ours admin.ejs page
+1. Explain where snackbar message will appear
+1. Delete unnecessary code
+1. Replace handler code with alert('undo')
+1. Change timeout to be longer
+1. Try loading the page, it won't run.  Because if you check console, something is undefined, yet it's defined when you console it.
+1. Solution: setTimeout((){}, 0);
+1. Replace IIFE with {}
+1. Replace var with const
+1. Try loading the page now
+1. Try replacing the message with '<%= msg %>'
+
+Q. Notice how the snackbar shows even when I didn't delete anything prior.  How to solve that?
+A. Use <% %> js logic to test if msg exists then do code, else don't even write code
